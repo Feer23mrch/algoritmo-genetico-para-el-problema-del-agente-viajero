@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dijkstra Perú – Ruta más corta</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <nav class="glass">
+    <span class="nav-title">🗺 DIJKSTRA PERÚ</span>
+    <div class="nav-badges">
+      <span class="nav-badge">25 DEPARTAMENTOS</span>
+      <span class="nav-badge">ALGORITMO DIJKSTRA</span>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <h1>Ruta Más Corta entre<br>Capitales del Perú</h1>
+    <p>Selecciona dos departamentos para calcular la ruta óptima usando el algoritmo de Dijkstra sobre la red vial
+      peruana.</p>
+  </div>
+
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 40" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,20 C360,40 1080,0 1440,20 L1440,40 L0,40 Z" fill="rgba(255,255,255,0.03)" />
+    </svg>
+  </div>
+
+  <div class="main-grid">
+    <aside class="side-panel">
+
+      <div class="glass card">
+        <div class="card-title">📍 Seleccionar Ruta</div>
+        <div class="mb-3">
+          <label class="form-label form-label-origen">Origen</label>
+          <select id="select-origen">
+            <option value="">— Elige departamento —</option>
+          </select>
+        </div>
+        <div class="mb-4">
+          <label class="form-label form-label-destino">Destino</label>
+          <select id="select-destino">
+            <option value="">— Elige departamento —</option>
+          </select>
+        </div>
+        <div class="route-tags">
+          <div class="tag tag-origen" id="tag-origen">—</div>
+          <span class="tag-arrow">→</span>
+          <div class="tag tag-destino" id="tag-destino">—</div>
+        </div>
+        <button id="btn-buscar" class="btn-primary" disabled>⚡ Encontrar Ruta Más Corta</button>
+        <button id="btn-reset" class="btn-secondary">↺ Limpiar selección</button>
+        <p class="click-hint">También puedes hacer clic en los marcadores del mapa</p>
+      </div>
+
+      <div class="glass card">
+        <div class="card-title">🎨 Leyenda</div>
+        <div class="legend-list">
+          <div class="legend-item">
+            <div class="legend-dot legend-dot-origen"></div><span>Origen</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot legend-dot-destino"></div><span>Destino</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot legend-dot-paso"></div><span>Intermedios</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot legend-dot-normal"></div><span>Otros</span>
+          </div>
+          <div class="legend-item mt-1">
+            <div class="legend-line legend-line-ruta"></div><span>Ruta óptima</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-line legend-line-arista"></div><span>Conexiones del grafo</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="result-panel" class="glass hidden">
+        <div class="card-title">📊 Resultado</div>
+        <div class="flex items-center justify-between mb-3">
+          <span style="font-size:0.78rem;color:#93c5fd;font-weight:500;">Distancia total</span>
+          <span class="dist-badge" id="result-dist">—</span>
+        </div>
+        <div class="card-title" style="margin-top:0.5rem;">Ruta paso a paso</div>
+        <ul id="result-ruta"></ul>
+      </div>
+
+    </aside>
+    <div>
+      <div id="map"></div>
+    </div>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMiBO94flI8MQVMijJWghhRx_7NDgRdog&callback=initApp&v=weekly"
+    async defer></script>
+  <div class="route-tags">
+    <div class="tag tag-origen" id="tag-origen">—</div>
+    <span class="tag-arrow">→</span>
+    <div class="tag tag-destino" id="tag-destino">—</div>
+  </div>
+
+  <button id="btn-buscar" class="btn-primary" disabled>⚡ Encontrar Ruta (Dijkstra)</button>
+  <button id="btn-tsp" class="btn-primary"
+    style="background: linear-gradient(135deg, #10b981, #059669); color: white; margin-bottom: 0.5rem;">🧬 Tour Nacional
+    (Genético)</button>
+
+  <button id="btn-reset" class="btn-secondary">↺ Limpiar selección</button>
+
+</body>
+
+</html>
